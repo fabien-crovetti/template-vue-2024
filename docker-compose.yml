@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+    template_vue_node:
+        container_name: template_vue_node
+        build: docker
+        volumes:
+            - .:/srv:rw
+        restart: always
+        ports:
+            - "8778:3000"
