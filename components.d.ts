@@ -9,6 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChartSample: typeof import('./src/components/ChartSample.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Login: typeof import('./src/components/LoginForm.vue')['default']
+    LoginForm: typeof import('./src/components/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableChart: typeof import('./src/components/ChartSample.vue')['default']

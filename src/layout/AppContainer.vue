@@ -4,8 +4,8 @@ import {onBeforeMount} from "vue";
 import {useAppStore} from "@/store/app";
 import api from "@/api/backend";
 import NavigationMenu from "@/layout/NavigationMenu.vue";
-
 import AppLoader from "@/layout/AppLoader.vue";
+
 const store = useAppStore()
 
 
@@ -15,11 +15,13 @@ function initApp(){
         loggedIn: false,
     }
 
-    api.sample.getAppData().then((response)=>{
+
+    api.sample.getUser().then((response)=>{
         if(response.status === 200){
             app.initialisationComplete = true
             store.setApp(app)
         }
+
     })
 
 }
@@ -37,7 +39,7 @@ onBeforeMount(()=>{
     />
     <v-app v-else>
         <navigation-menu class="mb-12"/>
-        <v-main class="px-8">
+        <v-main class="mt-6 px-8">
             <router-view/>
         </v-main>
     </v-app>

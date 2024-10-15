@@ -1,4 +1,3 @@
-version: "3.7"
 services:
     template_vue_node:
         container_name: template_vue_node

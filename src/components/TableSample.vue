@@ -13,7 +13,13 @@ const tableItems = ref([])
 onBeforeMount(()=>{
     api.sample.getBooks().then((response)=>{
         if(response.status === 200){
-            tableItems.value = response.data
+            tableItems.value = response.data.map((book)=>{
+                return {
+                    title:book.title,
+                    author:book.author.name,
+                    date:book.releaseDate.slice(0,4)
+                }
+            })
             waitingDataLoading.value = false
         }
     })

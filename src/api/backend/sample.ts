@@ -8,15 +8,16 @@ class Sample {
         this.axiosBackend = axiosBackend
     }
 
-    getAppData (filters: AxiosRequestConfig|undefined = {}) {
-        return this.axiosBackend.get(`/app-data`, filters)
+    loginCheck (filters: AxiosRequestConfig|undefined = {}) {
+        return this.axiosBackend.post(`/api/login_check`, filters)
+    }
+    getUser (filters: AxiosRequestConfig|undefined = {}) {
+        return this.axiosBackend.get(`/api/user`, filters)
     }
     getBooks (filters: AxiosRequestConfig|undefined = {}) {
-        return this.axiosBackend.get(`/books`, filters)
+        return this.axiosBackend.get(`/api/books`, filters)
     }
-    getBooksRepartition (filters: AxiosRequestConfig|undefined = {}) {
-        return this.axiosBackend.get(`/books/repartition`, filters)
-    }
+
 
 }
 

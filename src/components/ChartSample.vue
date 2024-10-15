@@ -8,7 +8,7 @@ ChartJS.register(Title, Tooltip, BarElement, CategoryScale, LinearScale)
 const isLoaded = ref(false);
 const chartParam = reactive({
     chartData: {
-        labels: [ '1982', '1987', '1991', '1994', '1995', '1996', '1997', '1999', '2000', '2001', '2003', '2004', '2012' ],
+        labels: [],
         datasets: [
             {
                 data: [],
@@ -26,10 +26,24 @@ const templateImg = ref(new URL(`@/assets/template01.png`, import.meta.url).href
 
 
 onBeforeMount(()=>{
-    api.sample.getBooksRepartition().then((response)=>{
+    api.sample.getBooks().then((response)=>{
         if(response.status === 200){
-            chartParam.chartData.datasets[0].data = response.data.data
-            chartParam.chartData.labels = response.data.labels
+            let labels = []
+            let count = []
+            response.data.forEach((book)=>{
+                if(!count[book.releaseDate.slice(0,4)]){
+                    count[book.releaseDate.slice(0,4)] = 1
+                    labels.push(book.releaseDate.slice(0,4))
+                }else{
+                    count[book.releaseDate.slice(0,4)]++
+                }
+            })
+            labels.sort()
+
+            chartParam.chartData.datasets[0].data = labels.map((date)=>{
+                return count[date]
+            })
+            chartParam.chartData.labels = labels
             isLoaded.value = true
         }
     })

@@ -27,7 +27,7 @@ onMounted(()=>{
             <template v-slot:activator="{ props }">
             <span v-bind="props" class="cursor-pointer">
                 <span class="flag-container" :class="defaultFlagClass"/>
-                <v-icon icon="mdi-menu-down"/>
+                <v-icon icon="mdi-menu-down" color="grey-darken-2"/>
             </span>
 
             </template>

@@ -3,9 +3,18 @@ import MockAdapter from 'axios-mock-adapter';
 import Sample from '@/api/backend/sample';
 import { mockSample } from '@/mocks/backend';
 
+let header = {}
+if(localStorage.getItem('accessToken')){
+    header = {
+        "Authorization": `Bearer ${localStorage.getItem('accessToken')}`
+    }
+}
+
+
 const axiosBackend = axios.create({
-    baseURL: import.meta.env.VITE_YOODA_TWO_BACKEND_BASE_URI,
-    withCredentials: true
+    baseURL: import.meta.env.VITE_BACKEND_BASE_URI,
+    withCredentials: true,
+    headers:header
 });
 
 
