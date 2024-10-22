@@ -2,7 +2,9 @@
 
 import { ref } from "vue"
 import api from "@/api/backend";
+import { useAccountManager } from "@/composable/accountManager";
 
+const { setJwtCredential } = useAccountManager()
 const loginError = ref(false)
 const showPlainPassword = ref(false)
 const isFormValid = ref(false)
@@ -21,8 +23,7 @@ function checkCredential(){
     api.sample.loginCheck({username:login.value, password:password.value})
     .then(res=>{
         if(res.data.refresh_token){
-            localStorage.setItem("accessToken", res.data.token)
-            localStorage.setItem("refreshToken", res.data.refresh_token)
+            setJwtCredential(res.data.token, res.data.refresh_token)
             window.location.href = '/'
         }
         else{

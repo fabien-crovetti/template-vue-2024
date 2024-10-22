@@ -2,6 +2,7 @@
 
 import {ref, onBeforeMount} from "vue";
 import api from "@/api/backend";
+import {AxiosResponse} from "axios";
 
 const waitingDataLoading = ref(true)
 const tableItems = ref([])
@@ -11,7 +12,7 @@ const tableItems = ref([])
 
 
 onBeforeMount(()=>{
-    api.sample.getBooks().then((response)=>{
+    api.sample.getBooks().then((response:AxiosResponse)=>{
         if(response.status === 200){
             tableItems.value = response.data.map((book)=>{
                 return {

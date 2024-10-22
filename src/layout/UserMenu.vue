@@ -1,10 +1,9 @@
 <script setup>
 
-function logout(){
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    window.location.reload();
-}
+import { useAccountManager } from "@/composable/accountManager";
+const {logout} = useAccountManager()
+
+
 
 </script>
 
@@ -19,15 +18,13 @@ function logout(){
             </template>
             <v-list width="150">
                 <v-list-item class="user-menu-container">
-                    <v-list-item-title class="cursor-pointer mb-2 pa-2" >
-                        <router-link to="/profile" class="clean-link">
+                    <router-link to="/profile" class="clean-link">
+                        <v-list-item-title class="cursor-pointer mb-2 pa-2" >
                             <span><v-icon icon="mdi-card-account-details-outline" class="mr-2"/>Profile</span>
-                        </router-link>
-
-                    </v-list-item-title>
+                        </v-list-item-title>
+                    </router-link>
 
                     <v-divider/>
-
 
                     <v-list-item-title class="cursor-pointer mt-6 pa-2" @click="logout()">
                         <span><v-icon icon="mdi-logout" class="mr-2"/>Logout</span>

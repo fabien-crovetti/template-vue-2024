@@ -11,7 +11,7 @@ import ChartSample from "@/components/ChartSample.vue";
             <table-sample/>
         </v-col>
         <v-col :cols="6">
-            <chart-sample/>
+<!--            <chart-sample/>-->
         </v-col>
     </v-row>
 </template>
